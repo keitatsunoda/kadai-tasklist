@@ -1,6 +1,7 @@
+
 <ul class="media-list">
   
-<% tasks.each do |task| %>
+<% @tasks.each do |task| %>
 
     
 <% user = task.user %>
@@ -23,6 +24,10 @@
           <p>
 <%= task.content %>
 </p>
+<p>
+<%= task.status %>  
+</p>
+<%= link_to 'edit' , task %>
         </div>
       </div>
     </li>
@@ -33,3 +38,4 @@
 <%= paginate tasks %>
 
 </ul>
+<p>test</p>

@@ -5,6 +5,7 @@ class TasksController < ApplicationController
     end
     
     def show
+        set_task
     end
 
     def new
@@ -12,7 +13,8 @@ class TasksController < ApplicationController
     end
     
     def create
-        @task = Task.new(task_params)
+        # @task = Task.new(task_params)
+        @task = current_user.tasks.build(task_params)
         if @task.save
             flash[:success] = 'Task が追加されました'
             redirect_to @task
@@ -23,6 +25,7 @@ class TasksController < ApplicationController
     end
     
     def edit
+        set_task
     end
 
     def update
@@ -39,7 +42,7 @@ class TasksController < ApplicationController
     def destroy
         @task.destroy
         flash[:success] = 'Taskが削除されました'
-        redirect_to tasks_url
+        redirect_to root_path
         
     end
     
